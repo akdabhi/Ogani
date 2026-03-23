@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecommerce Store</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f6fa;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .products {
+      flex: 1;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .price {
+      color: #27ae60;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 8px 12px;
+      border: none;
+      background: #111;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .pagination {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .pagination button {
+      margin: 5px;
+      padding: 8px 12px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+    .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+  </style>
+</head>
+
+<body>
+  <header>🛒 Simple Ecommerce Store</header>
+
+  <div class="container">
+    <form method="get">
+      <div class="sidebar">
+        <h3>Filter</h3>
+
+        <!-- CATEGORY -->
+        <label>Category</label>
+        <select name="category">
+          <option value="all">All</option>
+          {% for i in categories %}
+          <option value="{{i.id}}" {% if selected_category == i.id|stringformat:"s" %}selected{% endif %}>
+            {{i.name}}
+          </option>
+          {% endfor %}
+        </select>
+
+        <!-- PRICE -->
+        <label>Price Range</label>
+        <input type="range" min="0" max="100000" value="{{price|default:100000}}" name="pricerange" id="priceSlider">
+
+        <p>Max Price: ₹<span id="priceValue">{{price|default:100000}}</span></p>
+
+        <button type="submit">Apply</button>
+      </div>
+    </form>
+
+    <!-- PRODUCTS -->
+    <div class="products">
+      <div class="product-grid" id="productGrid">
+        <div class="product-grid">
+          {% for i in page_obj %}
+          <div class="card">
+            <img src="{{i.image.url}}" alt="img" />
+            <p>{{i.name}}</p>
+            <p class="price">₹{{i.price}}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="pagination">
+
+        {% if page_obj.has_previous %}
+        <a
+          href="?page={{page_obj.previous_page_number}}&category={{selected_category}}&pricerange={{price}}">Previous</a>
+        {% endif %}
+
+        <span>Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}</span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{page_obj.next_page_number}}&category={{selected_category}}&pricerange={{price}}">Next</a>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+  <script>
+    const slider = document.getElementById("priceSlider");
+    const priceValue = document.getElementById("priceValue");
+    slider.oninput = function() {
+      priceValue.innerText = this.value;
+    };
+  </script>
+</body>
+
+</html>
