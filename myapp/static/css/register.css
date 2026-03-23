@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #7fad39, #4CAF50);
+}
+
+.register-container {
+    width: 950px;
+    height: 550px;
+    display: flex;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Left Section */
+.register-left {
+    flex: 1;
+    /* background: url('https://images.unsplash.com/photo-1574226516831-e1dff420e43e') no-repeat center center/cover; */
+    background: url("https://images.unsplash.com/photo-1610832958506-aa56368176cf")
+        no-repeat center center/cover;
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-blend-mode: overlay;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.register-left h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.register-left p {
+    font-size: 18px;
+}
+
+/* Right Section */
+.register-right {
+    flex: 1;
+    padding: 50px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 100%;
+}
+
+form h2 {
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #7fad39;
+    outline: none;
+    box-shadow: 0 0 5px rgba(127,173,57,0.4);
+}
+
+.register-btn {
+    width: 100%;
+    padding: 12px;
+    background: #7fad39;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.register-btn:hover {
+    background: #5e8e2f;
+}
+
+.login-text {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.login-text a {
+    color: #7fad39;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .register-container {
+        flex-direction: column;
+        height: auto;
+        width: 90%;
+    }
+
+    .register-left {
+        height: 200px;
+    }
+}

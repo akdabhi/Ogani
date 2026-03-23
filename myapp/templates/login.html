@@ -1,0 +1,62 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login | Ogani Fruits</title>
+    <link rel="stylesheet" href="login.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  <body>
+    <div class="login-container">
+      <div class="login-left">
+        <h1>Ogani Fruits</h1>
+        <p>Fresh • Organic • Healthy</p>
+      </div>
+
+      <div class="login-right">
+        <form method="POST" action="{% url 'login' %}">
+          <!-- Django CSRF Token -->
+          {% csrf_token %}
+
+          <h2>Login to Your Account</h2>
+
+          <div class="input-group">
+            <label>Email Address</label>
+            <input
+              type="text"
+              name="email_or_phone"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+
+          <div class="extra-options">
+            <div>
+              <input type="checkbox" id="remember" />
+              <label for="remember">Remember me</label>
+            </div>
+            <a href="{% url 'forgot' %}">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="login-btn">Login</button>
+
+          <p class="register-text">
+            Don't have an account? <a href="{% url 'register' %}">Register</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

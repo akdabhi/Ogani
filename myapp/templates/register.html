@@ -1,0 +1,84 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register | Ogani Fruits</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <link rel="stylesheet" href="{% static 'css/register.css' %}" />
+
+  <body>
+    <div class="register-container">
+      <div class="register-left">
+        <h1>Join Ogani Fruits</h1>
+        <p>Fresh • Organic • Healthy Living</p>
+      </div>
+
+      <div class="register-right">
+        <form method="POST">
+          {% csrf_token %}
+          <div style="margin-top: 20px"></div>
+          <h2>Create Your Account</h2>
+
+          <div class="input-group">
+            <label>Full Name</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label>Email Address</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label>Phone Number</label>
+            <input
+              type="text"
+              name="phoneno"
+              placeholder="Enter your number"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Create password"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              name="confirmpassword"
+              placeholder="Confirm password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="register-btn">Register</button>
+
+          <p class="login-text">
+            Already have an account? <a href="{% url 'login' %}">Login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

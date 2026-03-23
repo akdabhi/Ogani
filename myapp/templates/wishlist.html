@@ -1,0 +1,93 @@
+{% extends 'index.html' %} {% load static %} {% block start %}
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Hero Section End -->
+
+<!-- Breadcrumb Section -->
+<section
+  class="breadcrumb-section set-bg"
+  data-setbg="{% static 'img/breadcrumb.jpg' %}"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="breadcrumb__text">
+          <h2>Wishlist</h2>
+          <div class="breadcrumb__option">
+            <a href="{% url 'index' %}">Home</a>
+            <span>Wishlist</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wishlist Section -->
+<section class="wishlist spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="wishlist__table">
+          <table>
+            <thead>
+              <tr>
+                <th class="wishlist__product">Products</th>
+                <th>Price</th>
+                <th>Add To Cart</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in wishlist_items %}
+
+              <tr>
+                <td class="wishlist__item">
+                  <img src="{{ item.product.product_image.url }}" width="80" />
+                  <h5>{{ item.product.product_name }}</h5>
+                </td>
+
+                <td class="wishlist__price">₹{{ item.product.product_price }}</td>
+
+                <td>
+                  <a
+                    href="{% url 'add_to_cart' item.product.id %}"
+                    class="wishlist__cart_btn"
+                  >
+                    Add to Cart
+                  </a>
+                </td>
+
+                {% comment %} <td>
+                    <a href="{% url 'toggle_wishlist' item.product.id %}">
+                        <span class="icon_close"></span>
+                    </a>
+                </td> {% endcomment %}
+                <td class="wishlist__close">
+                  <a href="{% url 'toggle_wishlist' item.product.id %}">
+                    <span class="icon_close"></span>
+                  </a>
+                </td>
+              </tr>
+
+              {% empty %}
+
+              <tr>
+                <td colspan="4" style="text-align: center">
+                  Your Wishlist is Empty
+                </td>
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
