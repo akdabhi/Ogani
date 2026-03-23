@@ -29,4 +29,4 @@ def home(request):
         "price": price,
         "selected_category": category_id,
     }
-    return render(request, "index.html", context)
+    return render(request, "test.html", context)
